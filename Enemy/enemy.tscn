@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsva8wysuv04"]
+
+[ext_resource type="Texture2D" uid="uid://b8lfkvcr46srs" path="res://Textures/Enemy/kolbold_weak.png" id="1_2pb1h"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2pb1h")
+hframes = 2
