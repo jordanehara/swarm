@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-var movement_speed = 400.0
+var movement_speed = 50.0
 
 # delta = 1s/frame_rate
 # if moving 600 pixels, movement_speed = 6
 # 60 fps = 600/(60*6) = 1.67s
 # 20 fps = 600/(20*6) = 5s
 #
-# if moving 600 pixelsdfsdfsdfss, movement_speed 360*delta
+# if moving 600 pixels, movement_speed 360*delta
 # 60 fps = 600/(60*360/1/60) = 1.67s
 # 20 fps = 600/(20*360/20) = 1.67s
 func _physics_process(delta: float) -> void: # 1/60s movement runs
