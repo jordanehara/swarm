@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var movement_speed = 50.0
+@onready var sprite = $Sprite2D
+@onready var walkTimer = get_node("%walkTimer")
 
 # delta = 1s/frame_rate
 # if moving 600 pixels, movement_speed = 6
@@ -19,6 +21,20 @@ func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_mov, y_mov)
+	
+	# Animate sprite
+	if mov.x > 0:
+		sprite.flip_h = true;
+	elif mov.x < 0:
+		sprite.flip_h = false;
+		
+	if mov != Vector2.ZERO:
+		if walkTimer.is_stopped():
+			if sprite.frame >= sprite.hframes - 1:
+				sprite.frame = 0
+			else:
+				sprite.frame = 1
+			walkTimer.start()
 	
 	# velocity actually moves the character
 	# diagonal movement would be faster than right left movement if not normalized

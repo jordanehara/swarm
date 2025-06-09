@@ -21,3 +21,8 @@ hframes = 2
 position = Vector2(1.55923, 1.07368)
 scale = Vector2(1.05394, 0.818103)
 shape = SubResource("CapsuleShape2D_4ntmi")
+
+[node name="walkTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
