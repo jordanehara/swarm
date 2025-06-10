@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var movement_speed = 50.0
+var hp = 80
+
 @onready var sprite = $Sprite2D
 @onready var walkTimer = get_node("%walkTimer")
 
@@ -12,7 +14,7 @@ var movement_speed = 50.0
 # if moving 600 pixels, movement_speed 360*delta
 # 60 fps = 600/(60*360/1/60) = 1.67s
 # 20 fps = 600/(20*360/20) = 1.67s
-func _physics_process(delta: float) -> void: # 1/60s movement runs
+func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
 	
 	
@@ -40,3 +42,8 @@ func movement():
 	# diagonal movement would be faster than right left movement if not normalized
 	velocity = mov.normalized() * movement_speed 
 	move_and_slide() # specific to 2d body. Automatically uses delta 
+
+
+func _on_hurt_box_hurt(damage: Variant) -> void:
+	hp -= damage
+	print(hp)
