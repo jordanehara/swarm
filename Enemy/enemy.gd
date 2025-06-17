@@ -3,11 +3,15 @@ extends CharacterBody2D
 @export var movement_speed = 20.0
 @export var hp = 10
 @export var knockback_recovery = 3.5
+@export var experience = 1
 var knockback = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var sprite = $Sprite2D
 @onready var anim = $AnimationPlayer
+
+var exp_gem = preload("res://Objects/experience_gem.tscn")
 
 signal remove_from_array(object)
 
@@ -26,10 +30,16 @@ func _physics_process(_delta: float) -> void:
 	elif direction.x < -0.1:
 		sprite.flip_h = false
 
+func death():
+	emit_signal("remove_from_array", self)
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = global_position
+	new_gem.experience = experience
+	loot_base.call_deferred("add_child", new_gem)
+	queue_free() # delete enemy
 
 func _on_hurt_box_hurt(damage, angle, knockback_amount) -> void:
 	hp -= damage
 	knockback = angle * knockback_amount
 	if hp <= 0:
-		emit_signal("remove_from_array", self)
-		queue_free() # delete enemy
+		death()
