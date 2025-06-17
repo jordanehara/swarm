@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dtsi"]
 size = Vector2(17, 24)
 
-[node name="Tornado" type="Area2D"]
+[node name="Tornado" type="Area2D" groups=["attack"]]
 top_level = true
 scale = Vector2(0.1, 0.1)
 collision_layer = 4
@@ -17,7 +17,7 @@ script = ExtResource("1_8dtsi")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_puvvi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["attack"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_8dtsi")
 
