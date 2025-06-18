@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl4s74fg06xet"]
+[gd_scene load_steps=15 format=3 uid="uid://bl4s74fg06xet"]
 
 [ext_resource type="Script" uid="uid://usr2gponh8s7" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://2p6c5c87txcx" path="res://Textures/Player/player_sprite.png" id="1_l8h54"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://crhoac7q3wlta" path="res://Textures/GUI/exp_progress.png" id="5_k53q1"]
 [ext_resource type="FontFile" uid="uid://tp8b6lugjmo2" path="res://Font/tenderness.otf" id="6_fhl08"]
 [ext_resource type="AudioStream" uid="uid://bj0sqtwe52d36" path="res://Audio/SoundEffect/levelup.ogg" id="7_vtle1"]
+[ext_resource type="Texture2D" uid="uid://dhc8av7rhp4nt" path="res://Textures/GUI/healthbar.png" id="8_00tjw"]
+[ext_resource type="Texture2D" uid="uid://ysiamaba3m21" path="res://Textures/GUI/health.png" id="9_x3vf3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 radius = 5.54694
@@ -107,7 +109,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture_under = ExtResource("4_gwnis")
+texture_over = ExtResource("4_gwnis")
 texture_progress = ExtResource("5_k53q1")
 
 [node name="lbl_level" type="Label" parent="GUILayer/GUI/ExperienceBar"]
@@ -121,6 +123,18 @@ theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 200.0
+offset_right = 336.0
+offset_bottom = 208.0
+value = 1.0
+texture_over = ExtResource("8_00tjw")
+texture_progress = ExtResource("9_x3vf3")
 
 [node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
