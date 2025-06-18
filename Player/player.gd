@@ -4,6 +4,7 @@ var movement_speed = 50.0
 var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
+var time = 0
 
 var experience = 0
 var experience_level = 1
@@ -60,6 +61,7 @@ var enemy_close = []
 @onready var sndLevelUP = get_node("%snd_levelup")
 @onready var itemOptions = preload("res://Utility/item_option.tscn")
 @onready var healthbar = get_node("%HealthBar")
+@onready var lblTimer = get_node("%lblTimer")
 
 func _ready():
 	upgrade_character("javelin1")
@@ -329,3 +331,13 @@ func get_random_item():
 		return randomitem
 	else:
 		return null
+
+func change_time(argtime = 0):
+	time = argtime
+	var get_m = int(time / 60.0)
+	var get_s = time % 60
+	if get_m < 10:
+		get_m = str(0, get_m)
+	if get_s < 10:
+		get_s = str(0, get_s)
+	lblTimer.text = str(get_m, ":", get_s)
