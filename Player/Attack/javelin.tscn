@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ds6r6oy7hg2tm"]
 
 [ext_resource type="Texture2D" uid="uid://ceesv3dj23bmw" path="res://Textures/Items/Weapons/javelin_3_new.png" id="1_5mecp"]
-[ext_resource type="Script" uid="uid://dc3fhivt7g74k" path="res://javelin.gd" id="1_83qy7"]
+[ext_resource type="Script" uid="uid://dc3fhivt7g74k" path="res://Player/Attack/javelin.gd" id="1_83qy7"]
 [ext_resource type="AudioStream" uid="uid://dhiafmf74sbbi" path="res://Audio/SoundEffect/woosh.wav" id="3_240l2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_240l2"]
