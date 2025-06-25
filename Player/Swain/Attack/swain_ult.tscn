@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dur4ks1thcwnc"]
+
+[ext_resource type="Script" uid="uid://cdcprf8ycyf1l" path="res://Player/Swain/Attack/swain_ult.gd" id="1_21dig"]
+[ext_resource type="Texture2D" uid="uid://r4odsl4gx4n8" path="res://Textures/Swain/swain_ult.png" id="1_d8snl"]
+[ext_resource type="AudioStream" uid="uid://ke0wcar2daip" path="res://Audio/SoundEffect/swain_ult.mp3" id="2_6nunf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8snl"]
+
+[node name="swain_ult" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_21dig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d8snl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d8snl")
+
+[node name="UltDurationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+
+[node name="UltCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6nunf")
+volume_db = -15.0
