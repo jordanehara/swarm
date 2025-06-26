@@ -14,7 +14,6 @@ var collected_experience = 0
 var swainUlt = preload("res://Player/Swain/Attack/swain_ult.tscn")
 
 # Attack Nodes
-@onready var ultDurationTimer = get_node("%UltDurationTimer")
 @onready var ultCooldownTimer = get_node("%UltCooldownTimer")
 
 # UPGRADES
@@ -25,8 +24,6 @@ var speed = 0
 var spell_cooldown = 0
 var spell_size = 0
 var additional_attacks = 0
-
-# Ult
 
 # Enemy Related
 var enemy_close = []
@@ -56,14 +53,15 @@ var enemy_close = []
 signal playerdeath
 
 func _ready():
-	attack()
 	set_expbar(experience, calculate_experiencecap())
 	_on_hurt_box_hurt(0, 0, 0)
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
 	
-	var ult = Input.get_action_strength("ult")
+	var activate_ultimate = Input.get_action_strength("ult")
+	if activate_ultimate:
+		ult()
 
 func movement():
 	 # Takes care of pressing down multiple movement directions. Will be +1 or -1 otherwise
@@ -91,10 +89,18 @@ func movement():
 	velocity = mov.normalized() * movement_speed 
 	move_and_slide() # specific to 2d body. Automatically uses delta 
 
-func attack():
+func ult():
 	ultCooldownTimer.wait_time *= (1 - spell_cooldown)
 	if ultCooldownTimer.is_stopped():
+		print("cd timer stopped")
 		ultCooldownTimer.start()
+		print("cd timer started")
+		var ultimate = swainUlt.instantiate()
+		add_child(ultimate)
+
+
+func attack():
+	pass
 
 func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
