@@ -6,6 +6,7 @@ var speed = 100
 var damage = 5
 var knockback_amount = 100
 var attack_size = 1.0
+var HurtBoxType = 1 # HitOnce
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO

@@ -8,6 +8,7 @@ var knockback_amount = 100
 var paths = 1 # num of attacks in attack mode
 var attack_size = 1.0
 var attack_speed = 4.0
+var HurtBoxType = 1 # HitOnce
 
 var target = Vector2.ZERO
 var target_array = []

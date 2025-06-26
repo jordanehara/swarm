@@ -11,14 +11,15 @@ var hit_once_array = []
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
-		if not area.get("damage") == null:
-			match HurtBoxType:
+		if not area.get("damage") == null and not area.get("HurtBoxType") == null:
+			match area.HurtBoxType:
 				0: # Cooldown
 					collision.call_deferred("set", "disabled", true)
 					disableTimer.start()
 				1: # HitOnce
 					if hit_once_array.has(area) == false:
 						hit_once_array.append(area)
+						print("hit once")
 						if area.has_signal("remove_from_array"):
 							if not area.is_connected("remove_from_array", Callable(self, "remove_from_list")):
 								area.connect("remove_from_array", Callable(self, "remove_from_list"))

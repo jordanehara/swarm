@@ -61,7 +61,7 @@ shape = SubResource("RectangleShape2D_gwnis")
 
 [node name="UltCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 11.0
+wait_time = 80.0
 one_shot = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]

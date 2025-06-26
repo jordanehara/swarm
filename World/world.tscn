@@ -106,7 +106,10 @@ region_rect = Rect2(-86, -64.5, 4000, 4000)
 [node name="EnemySpawnner" parent="." instance=ExtResource("3_j8job")]
 spawns = Array[ExtResource("4_bkhv4")]([SubResource("Resource_awrha"), SubResource("Resource_f23eu"), SubResource("Resource_oeat8"), SubResource("Resource_5xkvv"), SubResource("Resource_kcyjf"), SubResource("Resource_xw5lg"), SubResource("Resource_0lysu"), SubResource("Resource_26uyv"), SubResource("Resource_dqu5g")])
 
-[node name="Player" parent="." instance=ExtResource("9_h2aik")]
+[node name="Swain" parent="." instance=ExtResource("9_h2aik")]
+
+[node name="enemy_kobold_strong" parent="." instance=ExtResource("6_w47uh")]
+position = Vector2(113, -3)
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(49, -7)
