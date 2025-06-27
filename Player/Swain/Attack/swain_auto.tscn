@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://blq4po230lgao"]
+
+[ext_resource type="Script" uid="uid://cwebjwqx4t8wh" path="res://Player/Swain/Attack/swain_auto.gd" id="1_gprg6"]
+[ext_resource type="Texture2D" uid="uid://bqmxqff132lel" path="res://Audio/SoundEffect/Lightning_3_256-sheet.png" id="1_xq7fg"]
+[ext_resource type="AudioStream" uid="uid://b0wq8w7v0rlix" path="res://Audio/SoundEffect/swain_auto.mp3" id="2_gprg6"]
+
+[sub_resource type="Animation" id="Animation_x68nx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gprg6"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0f16"]
+_data = {
+&"RESET": SubResource("Animation_x68nx"),
+&"swain_auto": SubResource("Animation_gprg6")
+}
+
+[node name="swain_auto" type="Area2D"]
+script = ExtResource("1_gprg6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(18.4767, -6.52334)
+rotation = -0.785398
+scale = Vector2(0.207031, 0.207031)
+texture = ExtResource("1_xq7fg")
+hframes = 3
+vframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(16.9767, 7.97666)
+scale = Vector2(0.207031, 0.207031)
+texture = ExtResource("1_xq7fg")
+hframes = 3
+vframes = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(18.4767, 1.47666)
+rotation = -0.328065
+scale = Vector2(0.207031, 0.207031)
+texture = ExtResource("1_xq7fg")
+hframes = 3
+vframes = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, 0, 26, -27, 35, -11, 37, 4)
+
+[node name="snd_auto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gprg6")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p0f16")
+}
+autoplay = "swain_auto"
