@@ -11,14 +11,14 @@ var experience_level = 1
 var collected_experience = 0
 
 # Attacks
-var swainUlt = preload("res://Player/Swain/Attack/swain_ult.tscn")
-var swainUlt_attackspeed = 80
+var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
+var swainSkill_attackspeed = 80
 
 var swaintAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
 var swainAuto_attackspeed = 1.75
 
 # Attack Nodes
-@onready var ultCooldownTimer = get_node("%UltCooldownTimer")
+@onready var skillCooldownTimer = get_node("%UltCooldownTimer")
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
 
 # UPGRADES
@@ -64,9 +64,9 @@ func _ready():
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
-	var activate_ultimate = Input.get_action_strength("ult")
-	if activate_ultimate and experience_level >= 6:
-		ult()
+	var activate_skill = Input.get_action_strength("skill")
+	if activate_skill:
+		skill()
 
 func movement():
 	 # Takes care of pressing down multiple movement directions. Will be +1 or -1 otherwise
@@ -95,14 +95,13 @@ func movement():
 	move_and_slide() # specific to 2d body. Automatically uses delta 
 
 func attack():
-	ultCooldownTimer.wait_time = swainUlt_attackspeed * (1 - spell_cooldown)
+	skillCooldownTimer.wait_time = swainSkill_attackspeed * (1 - spell_cooldown)
 	autoCooldownTimer.wait_time = swainAuto_attackspeed * (1 - spell_cooldown)	
 
-func ult():
-	if ultCooldownTimer.is_stopped():
-		print("is stopped")
-		ultCooldownTimer.start()
-		var ultimate = swainUlt.instantiate()
+func skill():
+	if skillCooldownTimer.is_stopped():
+		skillCooldownTimer.start()
+		var ultimate = swainSkill.instantiate()
 		add_child(ultimate)
 
 func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:

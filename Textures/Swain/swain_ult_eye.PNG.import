@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sibf2d2wynjd"
-path="res://.godot/imported/swain_ult.png-084207fc57ee82aaeb0f730540a2321c.ctex"
+uid="uid://dbdhktu3umbep"
+path="res://.godot/imported/swain_ult_eye.PNG-ea01e5c340813a80fcdb56ebb616b138.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Swain/swain_ult.png"
-dest_files=["res://.godot/imported/swain_ult.png-084207fc57ee82aaeb0f730540a2321c.ctex"]
+source_file="res://Textures/Swain/swain_ult_eye.PNG"
+dest_files=["res://.godot/imported/swain_ult_eye.PNG-ea01e5c340813a80fcdb56ebb616b138.ctex"]
 
 [params]
 
