@@ -12,7 +12,6 @@ var angle = Vector2.ZERO
 @onready var collision = $CollisionPolygon2D
 
 func _ready():
-	swain.velocity = Vector2.ZERO
 	snd.play()
 	angle = swain.global_position.direction_to(get_global_mouse_position())
 	rotation = angle.angle() + deg_to_rad(20)
