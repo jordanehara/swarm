@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://blq4po230lgao"]
 
 [ext_resource type="Script" uid="uid://cwebjwqx4t8wh" path="res://Player/Swain/Attack/swain_auto.gd" id="1_gprg6"]
-[ext_resource type="Texture2D" uid="uid://bqmxqff132lel" path="res://Textures/Swain/swain_auto.png" id="1_xq7fg"]
+[ext_resource type="Texture2D" uid="uid://bqmxqff132lel" path="res://Audio/SoundEffect/Lightning_3_256-sheet.png" id="1_xq7fg"]
 [ext_resource type="AudioStream" uid="uid://b0wq8w7v0rlix" path="res://Audio/SoundEffect/swain_auto.mp3" id="2_gprg6"]
 
 [sub_resource type="Animation" id="Animation_x68nx"]
@@ -91,8 +91,6 @@ _data = {
 }
 
 [node name="swain_auto" type="Area2D" groups=["attack"]]
-collision_layer = 4
-collision_mask = 0
 script = ExtResource("1_gprg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -123,12 +121,13 @@ hframes = 3
 vframes = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
 polygon = PackedVector2Array(0, 4, 69, -64, 87, -28, 92, 5)
 
 [node name="snd_auto" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gprg6")
 volume_db = -15.0
-pitch_scale = 1.12
+pitch_scale = 0.65
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -136,7 +135,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_p0f16")
 }
 autoplay = "swain_auto"
-speed_scale = 0.5
+speed_scale = 0.7
 
 [connection signal="finished" from="snd_auto" to="." method="_on_snd_auto_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

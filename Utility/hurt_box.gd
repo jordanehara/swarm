@@ -19,7 +19,6 @@ func _on_area_entered(area: Area2D) -> void:
 				1: # HitOnce
 					if hit_once_array.has(area) == false:
 						hit_once_array.append(area)
-						print("hit once")
 						if area.has_signal("remove_from_array"):
 							if not area.is_connected("remove_from_array", Callable(self, "remove_from_list")):
 								area.connect("remove_from_array", Callable(self, "remove_from_list"))

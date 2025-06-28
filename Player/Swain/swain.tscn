@@ -39,7 +39,6 @@ hframes = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2, 1)
 scale = Vector2(1.05394, 0.818103)
 shape = SubResource("CapsuleShape2D_4ntmi")
@@ -50,7 +49,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="HurtBox" parent="." instance=ExtResource("3_fwwdq")]
-visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -61,8 +59,13 @@ shape = SubResource("RectangleShape2D_gwnis")
 
 [node name="UltCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 80.0
+wait_time = 20.0
 one_shot = true
+
+[node name="AutoCooldownTimer" type="Timer" parent="Attack"]
+unique_name_in_owner = true
+wait_time = 1.75
+autostart = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 visible = false
@@ -233,6 +236,8 @@ offset_bottom = 56.0
 columns = 10
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attack/UltCooldownTimer" to="." method="_on_ult_cooldown_timer_timeout"]
+[connection signal="timeout" from="Attack/AutoCooldownTimer" to="." method="_on_auto_cooldown_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]

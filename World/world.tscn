@@ -108,9 +108,6 @@ spawns = Array[ExtResource("4_bkhv4")]([SubResource("Resource_awrha"), SubResour
 
 [node name="Swain" parent="." instance=ExtResource("9_h2aik")]
 
-[node name="enemy_kobold_strong" parent="." instance=ExtResource("6_w47uh")]
-position = Vector2(113, -3)
-
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(49, -7)
 

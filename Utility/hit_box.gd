@@ -1,5 +1,6 @@
 extends Area2D
 
+var HurtBoxType = 0 # Cooldown
 @export var damage = 1
 @onready var collision = $CollisionShape2D
 @onready var disableTimer = $DisableHitBoxTimer
