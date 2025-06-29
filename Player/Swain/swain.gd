@@ -11,15 +11,19 @@ var experience_level = 1
 var collected_experience = 0
 
 # Attacks
-var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
-var swainSkill_attackspeed = 80
-
 var swaintAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
-var swainAuto_attackspeed = 1.75
+var swainAuto_abilityspeed = 1.75
+
+var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
+var swainSkill_abilityspeed = 20
+
+var swainUlt = preload("res://Player/Swain/Attack/swain_ult.tscn")
+var swainUlt_abilityspeed = 60
 
 # Attack Nodes
-@onready var skillCooldownTimer = get_node("%UltCooldownTimer")
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
+@onready var skillCooldownTimer = get_node("%SkillCooldownTimer")
+@onready var ultCooldownTimer = get_node("%UltCooldownTimer")
 
 # UPGRADES
 var collected_upgrades = []
@@ -60,13 +64,15 @@ signal playerdeath
 func _ready():
 	set_expbar(experience, calculate_experiencecap())
 	_on_hurt_box_hurt(0, 0, 0)
-	attack()
+	set_spell_speed()
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
-	var activate_skill = Input.get_action_strength("skill")
-	if activate_skill:
+	
+	if Input.get_action_strength("skill"):
 		skill()
+	if Input.get_action_strength("ult"):
+		ult()
 
 func movement():
 	 # Takes care of pressing down multiple movement directions. Will be +1 or -1 otherwise
@@ -94,14 +100,21 @@ func movement():
 	velocity = mov.normalized() * movement_speed 
 	move_and_slide() # specific to 2d body. Automatically uses delta 
 
-func attack():
-	skillCooldownTimer.wait_time = swainSkill_attackspeed * (1 - spell_cooldown)
-	autoCooldownTimer.wait_time = swainAuto_attackspeed * (1 - spell_cooldown)	
+func set_spell_speed():
+	autoCooldownTimer.wait_time = swainAuto_abilityspeed * (1 - spell_cooldown)
+	skillCooldownTimer.wait_time = swainSkill_abilityspeed * (1 - spell_cooldown)
+	ultCooldownTimer.wait_time = swainUlt_abilityspeed * (1 - spell_cooldown)
 
 func skill():
 	if skillCooldownTimer.is_stopped():
 		skillCooldownTimer.start()
-		var ultimate = swainSkill.instantiate()
+		var ability = swainSkill.instantiate()
+		add_child(ability)
+
+func ult():
+	if ultCooldownTimer.is_stopped():
+		ultCooldownTimer.start()
+		var ultimate = swainUlt.instantiate()
 		add_child(ultimate)
 
 func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
@@ -193,7 +206,7 @@ func upgrade_character(upgrade):
 			hp = clamp(hp, 0, maxhp)
 	
 	adjust_gui_collection(upgrade)
-	attack()
+	set_spell_speed()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:
 		i.queue_free()
@@ -280,4 +293,4 @@ func _on_auto_cooldown_timer_timeout() -> void:
 
 
 func _on_ult_cooldown_timer_timeout() -> void:
-	print("ult back up")
+	print("skill back up")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c68vs7yrf6daa"]
+
+[ext_resource type="Texture2D" uid="uid://dbdhktu3umbep" path="res://Textures/Swain/swain_ult_eye.PNG" id="1_6nunf"]
+[ext_resource type="Script" uid="uid://b0fsrg8vnph8e" path="res://Player/Swain/Attack/swain_ult.gd" id="1_21dig"]
+[ext_resource type="Texture2D" uid="uid://sibf2d2wynjd" path="res://Textures/Swain/swain_ult.png" id="1_d8snl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_21dig"]
+radius = 37.0
+height = 120.0
+
+[node name="swain_ult" type="Area2D"]
+z_index = -1
+script = ExtResource("1_21dig")
+
+[node name="eye" type="Sprite2D" parent="."]
+top_level = true
+z_index = 3
+position = Vector2(0, -91)
+texture = ExtResource("1_6nunf")
+
+[node name="area_of_effect" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, -3.8147e-06)
+scale = Vector2(2.10976, 2.10976)
+texture = ExtResource("1_d8snl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_21dig")

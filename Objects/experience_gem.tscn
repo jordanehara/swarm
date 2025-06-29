@@ -8,6 +8,7 @@
 size = Vector2(20, 24)
 
 [node name="ExperienceGem" type="Area2D" groups=["loot"]]
+z_index = 1
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 0

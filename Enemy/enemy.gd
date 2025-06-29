@@ -19,6 +19,7 @@ signal remove_from_array(object)
 
 func _ready():
 	anim.play("walk")
+	z_index = 1
 	hitBox.damage = enemy_damage
 
 func _physics_process(_delta: float) -> void:
