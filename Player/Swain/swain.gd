@@ -59,6 +59,8 @@ var enemy_close = []
 @onready var lblResult = get_node("%lbl_Result")
 @onready var sndVictory = get_node("%snd_victory")
 @onready var sndLose = get_node("%snd_lose")
+@onready var skillCooldown = $GUILayer/GUI/Skill_cooldown
+@onready var ultCooldown = $GUILayer/GUI/Ult_cooldown
 
 # Signal
 signal playerdeath
@@ -110,14 +112,21 @@ func set_spell_speed():
 func skill():
 	if skillCooldownTimer.is_stopped():
 		skillCooldownTimer.start()
+		start_ability_timer_gui(skillCooldown)
 		var ability = swainSkill.instantiate()
 		add_child(ability)
 
 func ult():
 	if ultCooldownTimer.is_stopped():
 		ultCooldownTimer.start()
+		start_ability_timer_gui(ultCooldown)
 		var ultimate = swainUlt.instantiate()
 		add_child(ultimate)
+
+func start_ability_timer_gui(timergui: Control):
+	timergui.timelbl.visible = true
+	timergui.progressbar.value = 100
+	timergui.updateTimer.start()
 
 func increment_killcount():
 	killCount += 1
@@ -300,7 +309,3 @@ func _on_btn_menu_click_end() -> void:
 func _on_auto_cooldown_timer_timeout() -> void:
 	var auto_attack = swaintAuto.instantiate()
 	add_child(auto_attack)
-
-
-func _on_ult_cooldown_timer_timeout() -> void:
-	print("skill back up")

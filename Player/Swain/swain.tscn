@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mweljxrw4s5w"]
+[gd_scene load_steps=21 format=3 uid="uid://mweljxrw4s5w"]
 
 [ext_resource type="Script" uid="uid://8egh2tghq3v" path="res://Player/Swain/swain.gd" id="1_mm0hv"]
 [ext_resource type="Texture2D" uid="uid://ckbfsn31reexu" path="res://Textures/Swain/swain_sprite.PNG" id="2_mm0hv"]
@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://dfxrvixvuqfwl" path="res://Audio/SoundEffect/Victory.wav" id="10_cj54g"]
 [ext_resource type="AudioStream" uid="uid://cwxcc606m1vwx" path="res://Audio/SoundEffect/Lose.ogg" id="11_gtiox"]
 [ext_resource type="PackedScene" uid="uid://bkwk2jray1c1c" path="res://Utility/basic_button.tscn" id="12_iuxjr"]
+[ext_resource type="PackedScene" uid="uid://i0kgb3ij32q2" path="res://Player/GUI/ability_cooldown.tscn" id="13_1377n"]
+[ext_resource type="Texture2D" uid="uid://bji8xised6074" path="res://Textures/Swain/swain_skill_thumb.png" id="14_i4x77"]
+[ext_resource type="Texture2D" uid="uid://diq7l5c8wcwk4" path="res://Textures/Swain/swain_ult_thumb.png" id="14_qqjx3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 radius = 5.54694
@@ -238,8 +241,26 @@ offset_right = 208.0
 offset_bottom = 56.0
 columns = 10
 
+[node name="Ult_cooldown" parent="GUILayer/GUI" node_paths=PackedStringArray("cd_timer") instance=ExtResource("13_1377n")]
+layout_mode = 1
+offset_left = 576.0
+offset_top = 295.0
+offset_right = 0.0
+offset_bottom = -1.0
+cd_timer = NodePath("../../../Attack/UltCooldownTimer")
+skill_image = ExtResource("14_qqjx3")
+
+[node name="Skill_cooldown" parent="GUILayer/GUI" node_paths=PackedStringArray("cd_timer") instance=ExtResource("13_1377n")]
+layout_mode = 1
+offset_left = 528.0
+offset_top = 311.0
+offset_right = -48.0
+offset_bottom = 15.0
+scale = Vector2(0.75, 0.75)
+cd_timer = NodePath("../../../Attack/SkillCooldownTimer")
+skill_image = ExtResource("14_i4x77")
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
-[connection signal="timeout" from="Attack/SkillCooldownTimer" to="." method="_on_ult_cooldown_timer_timeout"]
 [connection signal="timeout" from="Attack/AutoCooldownTimer" to="." method="_on_auto_cooldown_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
