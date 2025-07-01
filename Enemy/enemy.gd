@@ -29,8 +29,6 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * movement_speed
 	velocity += knockback
 	velocity *= slow_percentage
-	print("knockback: ", knockback)
-	print("velocity: ", velocity)
 	move_and_slide()
 	
 	if direction.x > 0.1:
