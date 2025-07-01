@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://i0kgb3ij32q2"]
+
+[ext_resource type="Texture2D" uid="uid://dt0lged0hyi0m" path="res://Textures/GUI/cd_over.png" id="1_mufwi"]
+[ext_resource type="Texture2D" uid="uid://dvjcop8dk75rr" path="res://Textures/GUI/cd_progress.png" id="2_obubn"]
+
+[node name="ability_cooldown" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+fill_mode = 4
+texture_over = ExtResource("1_mufwi")
+texture_progress = ExtResource("2_obubn")
+
+[node name="SkillImage" type="TextureRect" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="CooldownTimer" type="Timer" parent="."]

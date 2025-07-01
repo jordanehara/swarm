@@ -70,6 +70,7 @@ autostart = true
 
 [node name="UltCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
+wait_time = 60.0
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 visible = false
@@ -139,7 +140,6 @@ texture_progress = ExtResource("8_fl02p")
 [node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
 layout_mode = 0
 offset_left = 800.0
 offset_top = 50.0
@@ -172,7 +172,6 @@ volume_db = -15.0
 [node name="DeathPanel" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
 layout_mode = 0
 offset_left = 220.0
 offset_top = -297.0

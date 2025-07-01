@@ -70,8 +70,6 @@ func _ready():
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
-	maxhp = 80 + (2 * killCount)
-	print(maxhp)
 	
 	if Input.get_action_strength("skill"):
 		skill()
@@ -121,10 +119,18 @@ func ult():
 		var ultimate = swainUlt.instantiate()
 		add_child(ultimate)
 
-func _on_hurt_box_hurt(_node_path, damage, _angle, _knockback, _slow) -> void:
-	hp -= clamp(damage - armor, 1.0, 999.0)
+func increment_killcount():
+	killCount += 1
+	maxhp = 80 + killCount
+	update_healthbar()
+
+func update_healthbar():
 	healthbar.max_value = maxhp
 	healthbar.value = hp
+
+func _on_hurt_box_hurt(_node_path, damage, _angle, _knockback, _slow) -> void:
+	hp -= clamp(damage - armor, 1.0, 999.0)
+	update_healthbar()
 	if hp <= 0:
 		death()
 

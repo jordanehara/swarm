@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 5
+var damage = 10
 var attack_size = 1.0
 var HurtBoxType = 0 # Cooldown
 

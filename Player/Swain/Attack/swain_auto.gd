@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 10
+var damage = 20
 var attack_size = 1.0
 var HurtBoxType = 1 # HitOnce
 

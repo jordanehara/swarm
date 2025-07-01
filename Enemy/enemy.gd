@@ -51,5 +51,4 @@ func _on_hurt_box_hurt(node_path, damage, angle, knockback_amount, slow) -> void
 	slow_percentage = slow
 	if hp <= 0:
 		death()
-		var killer = get_node(node_path)
-		killer.killCount += 1
+		get_node(node_path).increment_killcount()
