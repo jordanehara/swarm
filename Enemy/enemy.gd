@@ -17,7 +17,6 @@ var slow_percentage = 1.0
 var exp_gem = preload("res://Objects/experience_gem.tscn")
 
 signal remove_from_array(object)
-signal kill_count_increase(killer)
 
 func _ready():
 	anim.play("walk")
