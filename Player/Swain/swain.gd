@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 var movement_speed = 50.0
-var hp = 80
 var maxhp = 80
+var hp = 80
+var killCount = 0
 var last_movement = Vector2.UP
 var time = 0
 
@@ -10,7 +11,6 @@ var experience = 0
 var experience_level = 1
 var collected_experience = 0
 
-var killCount = 0
 
 # Attacks
 var swaintAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
@@ -70,6 +70,8 @@ func _ready():
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
+	maxhp = 80 + (2 * killCount)
+	print(maxhp)
 	
 	if Input.get_action_strength("skill"):
 		skill()
