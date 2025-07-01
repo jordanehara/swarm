@@ -10,6 +10,8 @@ var experience = 0
 var experience_level = 1
 var collected_experience = 0
 
+var killCount = 0
+
 # Attacks
 var swaintAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
 var swainAuto_abilityspeed = 1.75
@@ -63,7 +65,7 @@ signal playerdeath
 
 func _ready():
 	set_expbar(experience, calculate_experiencecap())
-	_on_hurt_box_hurt(0, 0, 0)
+	_on_hurt_box_hurt("", 0, 0, 0, 0)
 	set_spell_speed()
 
 func _physics_process(_delta: float) -> void: # 1/60s movement runs
@@ -117,7 +119,7 @@ func ult():
 		var ultimate = swainUlt.instantiate()
 		add_child(ultimate)
 
-func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
+func _on_hurt_box_hurt(_node_path, damage, _angle, _knockback, _slow) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
 	healthbar.max_value = maxhp
 	healthbar.value = hp

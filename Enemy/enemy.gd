@@ -17,6 +17,7 @@ var slow_percentage = 1.0
 var exp_gem = preload("res://Objects/experience_gem.tscn")
 
 signal remove_from_array(object)
+signal kill_count_increase(killer)
 
 func _ready():
 	anim.play("walk")
@@ -44,9 +45,11 @@ func death():
 	loot_base.call_deferred("add_child", new_gem)
 	queue_free() # delete enemy
 
-func _on_hurt_box_hurt(damage, angle, knockback_amount, slow) -> void:
+func _on_hurt_box_hurt(node_path, damage, angle, knockback_amount, slow) -> void:
 	hp -= damage
 	knockback = angle * knockback_amount
 	slow_percentage = slow
 	if hp <= 0:
 		death()
+		var killer = get_node(node_path)
+		killer.killCount += 1

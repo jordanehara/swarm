@@ -122,7 +122,6 @@ position = Vector2(29, -21)
 experience = 10
 
 [node name="snd_music" type="AudioStreamPlayer" parent="."]
-process_mode = 3
 stream = ExtResource("11_lo5ox")
 volume_db = -10.0
 autoplay = true
