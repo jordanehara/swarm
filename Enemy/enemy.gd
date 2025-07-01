@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var experience = 1
 @export var enemy_damage = 1
 var knockback = Vector2.ZERO
+var slow_percentage = 1.0
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
@@ -27,6 +28,9 @@ func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movement_speed
 	velocity += knockback
+	velocity *= slow_percentage
+	print("knockback: ", knockback)
+	print("velocity: ", velocity)
 	move_and_slide()
 	
 	if direction.x > 0.1:
@@ -42,8 +46,9 @@ func death():
 	loot_base.call_deferred("add_child", new_gem)
 	queue_free() # delete enemy
 
-func _on_hurt_box_hurt(damage, angle, knockback_amount) -> void:
+func _on_hurt_box_hurt(damage, angle, knockback_amount, slow) -> void:
 	hp -= damage
 	knockback = angle * knockback_amount
+	slow_percentage = slow
 	if hp <= 0:
 		death()
