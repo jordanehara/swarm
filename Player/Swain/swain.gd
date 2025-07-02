@@ -35,6 +35,7 @@ var speed = 0
 var spell_cooldown = 0
 var spell_size = 0
 var additional_attacks = 0
+var health_regen = 1
 
 # Enemy Related
 var enemy_close = []
@@ -309,3 +310,10 @@ func _on_btn_menu_click_end() -> void:
 func _on_auto_cooldown_timer_timeout() -> void:
 	var auto_attack = swaintAuto.instantiate()
 	add_child(auto_attack)
+
+
+func _on_health_regen_timer_timeout() -> void:
+	if hp < maxhp:
+		hp += health_regen
+		print("hp: ", hp)
+		update_healthbar()
