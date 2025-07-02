@@ -131,7 +131,9 @@ func start_ability_timer_gui(timergui: Control):
 
 func increment_killcount():
 	killCount += 1
+	var oldmaxhp = maxhp
 	maxhp = 80 + killCount
+	hp = int(maxhp * hp/oldmaxhp)
 	update_healthbar()
 
 func update_healthbar():
@@ -315,5 +317,4 @@ func _on_auto_cooldown_timer_timeout() -> void:
 func _on_health_regen_timer_timeout() -> void:
 	if hp < maxhp:
 		hp += health_regen
-		print("hp: ", hp)
 		update_healthbar()
