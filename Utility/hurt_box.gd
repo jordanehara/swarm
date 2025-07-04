@@ -42,6 +42,9 @@ func _on_area_entered(area: Area2D) -> void:
 				hitter = area.player
 			if not area.get("totaldamage") == null:
 				area.totaldamage += damage
+			if not area.get("healPercent") == null:
+				if area.healPercent != 0:
+					hitter.hp += clamp(damage * area.healPercent, 0, hitter.maxhp)
 			
 			emit_signal("hurt", hitter.get_path(), damage, angle, knockback, slow)
 			if area.has_method("enemy_hit"):

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var movement_speed = 50.0
-const basehp = 100
+const basehp = 200
 var maxhp = basehp
 var hp = basehp
 var killCount = 0
@@ -68,6 +68,7 @@ var enemy_close = []
 signal playerdeath
 
 func _ready():
+	upgrade_character("swainauto1")
 	set_expbar(experience, calculate_experiencecap())
 	_on_hurt_box_hurt("", 0, 0, 0, 0)
 	set_spell_speed()
@@ -214,10 +215,11 @@ func levelup():
 
 func upgrade_character(upgrade):
 	match upgrade:
-		"auto1", "auto2", "auto3", "auto4":
-			swainAuto.damage += 3
-		"auto5":
-			swainAuto.damage += 3
+		"swainauto2", "swainauto3", "swainauto4":
+			swainAuto.damage += 10
+		"swainauto5":
+			swainAuto.damage += 10
+			swainAuto.healPercent = 0.05
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
@@ -246,12 +248,12 @@ func upgrade_character(upgrade):
 
 func get_random_item():
 	var dblist = []
-	for i in UpgradeDb.UPGRADES:
-		if i in collected_upgrades or i in upgrade_options or UpgradeDb.UPGRADES[i]["type"] == "item": # If already collected or exists as an option or food item
+	for i in UpgradesDb.UPGRADES:
+		if i in collected_upgrades or i in upgrade_options or UpgradesDb.UPGRADES[i]["type"] == "item": # If already collected or exists as an option or food item
 			pass
-		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: # If prerequisites exist
+		elif UpgradesDb.UPGRADES[i]["prerequisite"].size() > 0: # If prerequisites exist
 			var to_add = true
-			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
+			for n in UpgradesDb.UPGRADES[i]["prerequisite"]:
 				if not n in collected_upgrades:
 					to_add = false
 			if to_add:
@@ -276,12 +278,12 @@ func change_time(argtime = 0):
 	lblTimer.text = str(get_m, ":", get_s)
 
 func adjust_gui_collection(upgrade):
-	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
-	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	var get_upgraded_displayname = UpgradesDb.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradesDb.UPGRADES[upgrade]["type"]
 	if get_type != "item":
 		var get_collected_displaynames = []
 		for i in collected_upgrades:
-			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+			get_collected_displaynames.append(UpgradesDb.UPGRADES[i]["displayname"])
 		if not get_upgraded_displayname in get_collected_displaynames:
 			var new_item = itemContainer.instantiate()
 			new_item.upgrade = upgrade

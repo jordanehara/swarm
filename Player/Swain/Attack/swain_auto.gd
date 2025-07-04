@@ -1,8 +1,9 @@
 extends Area2D
 
-var damage = 20
+var damage = 10
 var attack_size = 1.0
 var HurtBoxType = 1 # HitOnce
+var healPercent = 0
 
 var angle = Vector2.ZERO
 
@@ -13,6 +14,8 @@ var angle = Vector2.ZERO
 
 func _ready():
 	snd.play()
+	damage += player.maxhp * 0.05
+	print("auto dmg: ", damage)
 	angle = player.global_position.direction_to(get_global_mouse_position())
 	rotation = angle.angle() + deg_to_rad(20)
 	
