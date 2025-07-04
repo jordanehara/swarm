@@ -14,7 +14,7 @@ var collected_experience = 0
 
 
 # Attacks
-var swaintAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
+var swainAuto = preload("res://Player/Swain/Attack/swain_auto.tscn")
 var swainAuto_abilityspeed = 1.75
 
 var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
@@ -214,6 +214,10 @@ func levelup():
 
 func upgrade_character(upgrade):
 	match upgrade:
+		"auto1", "auto2", "auto3", "auto4":
+			swainAuto.damage += 3
+		"auto5":
+			swainAuto.damage += 3
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
@@ -243,11 +247,7 @@ func upgrade_character(upgrade):
 func get_random_item():
 	var dblist = []
 	for i in UpgradeDb.UPGRADES:
-		if i in collected_upgrades: # If already collected
-			pass
-		elif i in upgrade_options: # If already exists as an option
-			pass
-		elif UpgradeDb.UPGRADES[i]["type"] == "item": # Don't pick food
+		if i in collected_upgrades or i in upgrade_options or UpgradeDb.UPGRADES[i]["type"] == "item": # If already collected or exists as an option or food item
 			pass
 		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: # If prerequisites exist
 			var to_add = true
@@ -311,7 +311,7 @@ func _on_btn_menu_click_end() -> void:
 
 
 func _on_auto_cooldown_timer_timeout() -> void:
-	var auto_attack = swaintAuto.instantiate()
+	var auto_attack = swainAuto.instantiate()
 	add_child(auto_attack)
 
 
