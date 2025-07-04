@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 var movement_speed = 50.0
-var maxhp = 100
-var hp = 100
+const basehp = 100
+var maxhp = basehp
+var hp = basehp
 var killCount = 0
 var last_movement = Vector2.UP
 var time = 0
@@ -131,9 +132,9 @@ func start_ability_timer_gui(timergui: Control):
 
 func increment_killcount():
 	killCount += 1
-	var oldmaxhp = maxhp
-	maxhp = 100 + killCount
-	hp = int(maxhp * hp/oldmaxhp)
+	var oldmaxhp = float(maxhp)
+	maxhp = basehp + killCount/3
+	hp = int(maxhp * snapped(hp/oldmaxhp, 0.01))
 	update_healthbar()
 
 func update_healthbar():
