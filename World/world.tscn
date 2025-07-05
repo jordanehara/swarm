@@ -113,7 +113,7 @@ position = Vector2(49, -7)
 
 [node name="ExperienceGem" parent="Loot" instance=ExtResource("4_3f78f")]
 position = Vector2(29, -21)
-experience = 10
+experience = 100
 
 [node name="snd_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_lo5ox")

@@ -5,15 +5,15 @@ const WEAPON_PATH = "res://Textures/Items/Weapons/"
 
 const UPGRADES = {
 	"swainauto1": {
-		"icon": WEAPON_PATH + "swain_auto.png",
+		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Hand",
 		"details": "Shoot 3 bolts of eldritch enery in a cone, dealing damage that scales with Max Health",
 		"level": "Level: 1",
-		"prerequisite": [],
+		"prerequisite": ["swain"],
 		"type": "weapon"
 	},
 	"swainauto2": {
-		"icon": WEAPON_PATH + "swain_auto.png",
+		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Hand",
 		"details": "Shoot 3 bolts of eldritch enery in a cone, dealing damage that scales with Max Health",
 		"level": "Level: 2",
@@ -21,7 +21,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"swainauto3": {
-		"icon": WEAPON_PATH + "swain_auto.png",
+		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Handr",
 		"details": "Shoot 3 bolts of eldritch enery in a cone, dealing damage that scales with Max Health",
 		"level": "Level: 3",
@@ -29,7 +29,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"swainauto4": {
-		"icon": WEAPON_PATH + "swain_auto.png",
+		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Hand",
 		"details": "Shoot 3 bolts of eldritch enery in a cone, dealing damage that scales with Max Health",
 		"level": "Level: 4",
@@ -37,7 +37,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"swainauto5": {
-		"icon": WEAPON_PATH + "swain_auto.png",
+		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Hand",
 		"details": "Shoot 3 bolts of eldritch enery in a cone, dealing damage that scales with Max Health and healing Swain for a percentage of the damage",
 		"level": "Level: Max",

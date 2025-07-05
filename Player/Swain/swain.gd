@@ -29,7 +29,7 @@ var swainUlt_abilityspeed = 60
 @onready var ultCooldownTimer = get_node("%UltCooldownTimer")
 
 # UPGRADES
-var collected_upgrades = []
+var collected_upgrades = ["swain"]
 var upgrade_options = []
 var armor = 0
 var speed = 0
@@ -37,6 +37,9 @@ var spell_cooldown = 0
 var spell_size = 0
 var additional_attacks = 0
 var health_regen = 1
+
+# Auto
+var auto_level = 0
 
 # Enemy Related
 var enemy_close = []
@@ -215,11 +218,10 @@ func levelup():
 
 func upgrade_character(upgrade):
 	match upgrade:
-		"swainauto2", "swainauto3", "swainauto4":
-			swainAuto.damage += 10
+		"swainauto1", "swainauto2", "swainauto3", "swainauto4":
+			auto_level += 1
 		"swainauto5":
-			swainAuto.damage += 10
-			swainAuto.healPercent = 0.05
+			auto_level = 5
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
@@ -282,7 +284,8 @@ func adjust_gui_collection(upgrade):
 	var get_type = UpgradesDb.UPGRADES[upgrade]["type"]
 	if get_type != "item":
 		var get_collected_displaynames = []
-		for i in collected_upgrades:
+		print(collected_upgrades.slice(1, -1))
+		for i in collected_upgrades.slice(1, -1):
 			get_collected_displaynames.append(UpgradesDb.UPGRADES[i]["displayname"])
 		if not get_upgraded_displayname in get_collected_displaynames:
 			var new_item = itemContainer.instantiate()
@@ -313,8 +316,10 @@ func _on_btn_menu_click_end() -> void:
 
 
 func _on_auto_cooldown_timer_timeout() -> void:
-	var auto_attack = swainAuto.instantiate()
-	add_child(auto_attack)
+	if auto_level > 0:
+		var auto_attack = swainAuto.instantiate()
+		auto_attack.level = auto_level
+		add_child(auto_attack)
 
 
 func _on_health_regen_timer_timeout() -> void:

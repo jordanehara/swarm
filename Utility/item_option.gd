@@ -16,10 +16,10 @@ func _ready():
 	connect("selected_upgrade", Callable(player, "upgrade_character"))
 	if item == null:
 		item = "food"
-	lblName.text = UpgradeDb.UPGRADES[item]["displayname"]
-	lblDescription.text = UpgradeDb.UPGRADES[item]["details"]
-	lblLevel.text = UpgradeDb.UPGRADES[item]["level"]
-	itemIcon.texture = load(UpgradeDb.UPGRADES[item]["icon"])
+	lblName.text = UpgradesDb.UPGRADES[item]["displayname"]
+	lblDescription.text = UpgradesDb.UPGRADES[item]["details"]
+	lblLevel.text = UpgradesDb.UPGRADES[item]["level"]
+	itemIcon.texture = load(UpgradesDb.UPGRADES[item]["icon"])
 	
 
 func _input(event) -> void:

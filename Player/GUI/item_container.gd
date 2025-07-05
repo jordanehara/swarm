@@ -4,4 +4,4 @@ var upgrade = null
 
 func _ready():
 	if upgrade != null:
-		$ItemTexture.texture = load(UpgradeDb.UPGRADES[upgrade]["icon"])
+		$ItemTexture.texture = load(UpgradesDb.UPGRADES[upgrade]["icon"])

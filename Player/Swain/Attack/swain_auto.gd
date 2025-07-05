@@ -1,5 +1,6 @@
 extends Area2D
 
+var level = 1
 var damage = 10
 var attack_size = 1.0
 var HurtBoxType = 1 # HitOnce
@@ -13,14 +14,25 @@ var angle = Vector2.ZERO
 @onready var collision = $CollisionPolygon2D
 
 func _ready():
+	match level:
+		1:
+			damage = 10
+		2:
+			damage = 20
+		3:
+			damage = 30
+		4:
+			damage = 40
+		5:
+			damage = 50
+			healPercent = 0.05
+	
 	snd.play()
-	damage += player.maxhp * 0.05
-	print("auto dmg: ", damage)
 	angle = player.global_position.direction_to(get_global_mouse_position())
 	rotation = angle.angle() + deg_to_rad(20)
 	
 	attack_size = 1.0 * (1 + player.spell_size)
-	scale = Vector2(1, 1) * attack_size
+	scale = self.scale * attack_size
 
 func _physics_process(_delta: float) -> void:
 	position = player.global_position.normalized()
