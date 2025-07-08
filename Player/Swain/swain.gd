@@ -21,6 +21,7 @@ var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
 var swainSkill_abilityspeed = 20
 
 var swainUlt = preload("res://Player/Swain/Attack/swain_ult.tscn")
+var swainUlt_abilityspeed = 60
 
 # Attack Nodes
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
