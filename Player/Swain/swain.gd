@@ -60,7 +60,7 @@ func _physics_process(_delta: float) -> void: # 1/60s movement runs
 	movement()
 	if Input.get_action_strength("skill"):
 		skill()
-	if Input.get_action_strength("ult"):
+	if Input.get_action_strength("ult") and experience_level >= 6:
 		ult()
 
 func set_default_gui():
