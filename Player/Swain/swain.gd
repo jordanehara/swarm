@@ -21,7 +21,6 @@ var swainSkill = preload("res://Player/Swain/Attack/swain_skill.tscn")
 var swainSkill_abilityspeed = 20
 
 var swainUlt = preload("res://Player/Swain/Attack/swain_ult.tscn")
-var swainUlt_abilityspeed = 60
 
 # Attack Nodes
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
@@ -225,7 +224,7 @@ func upgrade_character(upgrade):
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
-			movement_speed += 20.0
+			movement_speed += 10.0
 		"tome1","tome2","tome3","tome4":
 			spell_size += 0.10
 		"scroll1","scroll2","scroll3","scroll4":
@@ -236,8 +235,8 @@ func upgrade_character(upgrade):
 			hp += 20
 			hp = clamp(hp, 0, maxhp)
 	
-	adjust_gui_collection(upgrade)
 	set_spell_speed()
+	adjust_gui_collection(upgrade)
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:
 		i.queue_free()
@@ -284,7 +283,6 @@ func adjust_gui_collection(upgrade):
 	var get_type = UpgradesDb.UPGRADES[upgrade]["type"]
 	if get_type != "item":
 		var get_collected_displaynames = []
-		print(collected_upgrades.slice(1, -1))
 		for i in collected_upgrades.slice(1, -1):
 			get_collected_displaynames.append(UpgradesDb.UPGRADES[i]["displayname"])
 		if not get_upgraded_displayname in get_collected_displaynames:
