@@ -13,7 +13,7 @@ var collected_experience = 0
 
 # Attacks
 var zeriAuto = preload("res://Player/Zeri/Attack/zeri_auto.tscn")
-var zeriAuto_abilityspeed = 1.75
+var zeriAuto_abilityspeed = .75
 
 #var zeriSkill = preload("res://Player/Zeri/Attack/zeri_skill.tscn")
 var zeriSkill_abilityspeed = 20
@@ -23,6 +23,7 @@ var zeriUlt_abilityspeed = 60
 
 # Attack Nodes
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
+@onready var autoAttackTimer = get_node("%AutoAttackTimer")
 @onready var skillCooldownTimer = get_node("%SkillCooldownTimer")
 @onready var ultCooldownTimer = get_node("%UltCooldownTimer")
 
@@ -37,6 +38,8 @@ var health_regen = 1
 
 # Auto
 var auto_level = 0
+var base_ammo = 7
+var auto_ammo = base_ammo
 
 # Enemy Related
 var enemy_close = []
@@ -65,8 +68,8 @@ func _physics_process(_delta: float) -> void: # 1/60s movement runs
 
 func set_default_gui():
 	gui.set_expbar(experience, calculate_experiencecap())
-	#gui.set_skillTimer(%SkillCooldownTimer, preload("res://Textures/Zeri/zeri_skill_thumb.png") as CompressedTexture2D)
-	#gui.set_ultTimer(%UltCooldownTimer, preload("res://Textures/Zeri/zeri_ult_thumb.png") as CompressedTexture2D)
+	gui.set_skillTimer(%SkillCooldownTimer, preload("res://Textures/Swain/swain_skill_thumb.png") as CompressedTexture2D)
+	gui.set_ultTimer(%UltCooldownTimer, preload("res://Textures/Swain/swain_ult_thumb.png") as CompressedTexture2D)
 
 func movement():
 	 # Takes care of pressing down multiple movement directions. Will be +1 or -1 otherwise
@@ -200,13 +203,22 @@ func upgrade_character(upgrade):
 
 
 func _on_auto_cooldown_timer_timeout() -> void:
-	if auto_level > 0:
-		var auto_attack = zeriAuto.instantiate()
-		auto_attack.level = auto_level
-		add_child(auto_attack)
+	auto_ammo = base_ammo
 
 
 func _on_health_regen_timer_timeout() -> void:
 	if hp < maxhp:
 		hp += health_regen
 		gui.update_healthbar(hp, maxhp)
+
+
+func _on_auto_attack_timer_timeout() -> void:
+	if auto_ammo > 0:
+		var auto_attack = zeriAuto.instantiate()
+		auto_attack.level = auto_level
+		add_child(auto_attack)
+		auto_ammo -= 1
+		if auto_ammo > 0:
+			autoAttackTimer.start()
+		else:
+			autoAttackTimer.stop()

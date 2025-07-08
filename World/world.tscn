@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbdrijyxq8gnk" path="res://Utility/gui_layer.tscn" id="1_0wqet"]
 [ext_resource type="Texture2D" uid="uid://7coju5khes5r" path="res://Textures/dirt_full_new.png" id="1_62w18"]
+[ext_resource type="PackedScene" uid="uid://bj0nr7qdgjl8p" path="res://Player/Zeri/zeri.tscn" id="3_0wqet"]
 [ext_resource type="PackedScene" uid="uid://ck88yac1x0lvr" path="res://Utility/enemy_spawnner.tscn" id="3_j8job"]
 [ext_resource type="PackedScene" uid="uid://bxdc3wbjttkyu" path="res://Objects/experience_gem.tscn" id="4_3f78f"]
 [ext_resource type="Script" uid="uid://d31sqp43q7csk" path="res://Utility/spawn_info.gd" id="4_bkhv4"]
@@ -10,9 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://582ly1044b2s" path="res://Enemy/enemy_cyclops.tscn" id="7_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://bs0q0fumdsnuj" path="res://Enemy/enemy_juggernaut.tscn" id="8_h2aik"]
 [ext_resource type="PackedScene" uid="uid://c8wjmvddu83oe" path="res://Enemy/enemy_super.tscn" id="9_0wqet"]
-[ext_resource type="PackedScene" uid="uid://mweljxrw4s5w" path="res://Player/Swain/swain.tscn" id="9_h2aik"]
 [ext_resource type="AudioStream" uid="uid://bxdcr1slyjrch" path="res://Audio/Music/battleThemeA.mp3" id="11_lo5ox"]
-[ext_resource type="Script" uid="uid://cqkpyw3k2kfnu" path="res://Audio/Music/snd_music.gd" id="12_h2aik"]
+[ext_resource type="Script" path="res://Audio/SoundEffect/snd_music.gd" id="12_h2aik"]
 
 [sub_resource type="Resource" id="Resource_awrha"]
 script = ExtResource("4_bkhv4")
@@ -106,7 +106,7 @@ texture = ExtResource("1_62w18")
 region_enabled = true
 region_rect = Rect2(-86, -64.5, 4000, 4000)
 
-[node name="Swain" parent="." instance=ExtResource("9_h2aik")]
+[node name="Zeri" parent="." instance=ExtResource("3_0wqet")]
 
 [node name="EnemySpawnner" parent="." instance=ExtResource("3_j8job")]
 spawns = Array[ExtResource("4_bkhv4")]([SubResource("Resource_awrha"), SubResource("Resource_f23eu"), SubResource("Resource_oeat8"), SubResource("Resource_5xkvv"), SubResource("Resource_kcyjf"), SubResource("Resource_xw5lg"), SubResource("Resource_0lysu"), SubResource("Resource_26uyv"), SubResource("Resource_dqu5g")])

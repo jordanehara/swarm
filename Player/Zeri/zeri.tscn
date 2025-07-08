@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bj0nr7qdgjl8p"]
 
 [ext_resource type="Script" uid="uid://rdsym13kotb6" path="res://Player/Zeri/zeri.gd" id="1_c2pxg"]
-[ext_resource type="Texture2D" uid="uid://ckbfsn31reexu" path="res://Textures/Swain/swain_sprite.PNG" id="2_xxvxf"]
+[ext_resource type="Texture2D" uid="uid://gy3gs5ims7bc" path="res://Textures/Player/zeri_sprite.PNG" id="2_c2pxg"]
 [ext_resource type="PackedScene" uid="uid://deuow7u07d07s" path="res://Utility/hurt_box.tscn" id="3_684kp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
@@ -25,7 +25,7 @@ motion_mode = 1
 script = ExtResource("1_c2pxg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xxvxf")
+texture = ExtResource("2_c2pxg")
 hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -59,8 +59,12 @@ one_shot = true
 
 [node name="AutoCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 1.75
+wait_time = 0.75
 autostart = true
+
+[node name="AutoAttackTimer" type="Timer" parent="Attack/AutoCooldownTimer"]
+unique_name_in_owner = true
+wait_time = 0.1
 
 [node name="UltCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
@@ -95,6 +99,7 @@ shape = SubResource("CircleShape2D_k53q1")
 [connection signal="timeout" from="healthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/AutoCooldownTimer" to="." method="_on_auto_cooldown_timer_timeout"]
+[connection signal="timeout" from="Attack/AutoCooldownTimer/AutoAttackTimer" to="." method="_on_auto_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
