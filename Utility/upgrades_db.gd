@@ -4,6 +4,46 @@ const ICON_PATH = "res://Textures/Items/Upgrades/"
 const WEAPON_PATH = "res://Textures/Items/Weapons/"
 
 const UPGRADES = {
+	"zeriauto1": {
+		"icon": WEAPON_PATH + "ice_spear.png",
+		"displayname": "Burst Fire",
+		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
+		"level": "Level: 1",
+		"prerequisite": ["zeri"],
+		"type": "weapon"
+	},
+	"zeriauto2": {
+		"icon": WEAPON_PATH + "ice_spear.png",
+		"displayname": "Burst Fire",
+		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
+		"level": "Level: 2",
+		"prerequisite": ["zeri"],
+		"type": "weapon"
+	},
+	"zeriauto3": {
+		"icon": WEAPON_PATH + "ice_spear.png",
+		"displayname": "Burst Fire",
+		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
+		"level": "Level: 3",
+		"prerequisite": ["zeri"],
+		"type": "weapon"
+	},
+	"zeriauto4": {
+		"icon": WEAPON_PATH + "ice_spear.png",
+		"displayname": "Burst Fire",
+		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
+		"level": "Level: 4",
+		"prerequisite": ["zeri"],
+		"type": "weapon"
+	},
+	"zeriauto5": {
+		"icon": WEAPON_PATH + "ice_spear.png",
+		"displayname": "Burst Fire",
+		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit. Deal static dmg every hit",
+		"level": "Level: Max",
+		"prerequisite": ["zeri"],
+		"type": "weapon"
+	},
 	"swainauto1": {
 		"icon": WEAPON_PATH + "ice_spear.png",
 		"displayname": "Death's Hand",
