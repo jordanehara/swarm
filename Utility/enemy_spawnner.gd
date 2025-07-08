@@ -3,13 +3,14 @@ extends Node2D
 @export var spawns: Array[Spawn_info] = []
 
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var gui = get_tree().get_first_node_in_group("gui")
 
 @export var time = 0
 
 signal changetime(time)
 
 func _ready():
-	connect("changetime", Callable(player, "change_time"))
+	connect("changetime", Callable(gui, "change_time"))
 
 func _on_timer_timeout() -> void:
 	time += 1

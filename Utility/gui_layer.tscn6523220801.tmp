@@ -1,0 +1,174 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbdrijyxq8gnk"]
+
+[ext_resource type="Texture2D" uid="uid://dwnigei8w2uiu" path="res://Textures/GUI/exp_background.png" id="1_56ilb"]
+[ext_resource type="Script" uid="uid://bodshgbuaub2d" path="res://Utility/gui_layer.gd" id="1_fdiq8"]
+[ext_resource type="Texture2D" uid="uid://crhoac7q3wlta" path="res://Textures/GUI/exp_progress.png" id="2_fdiq8"]
+[ext_resource type="FontFile" uid="uid://tp8b6lugjmo2" path="res://Font/tenderness.otf" id="3_utjed"]
+[ext_resource type="Texture2D" uid="uid://dhc8av7rhp4nt" path="res://Textures/GUI/healthbar.png" id="4_pexlh"]
+[ext_resource type="Texture2D" uid="uid://ysiamaba3m21" path="res://Textures/GUI/health.png" id="5_am70q"]
+[ext_resource type="AudioStream" uid="uid://bj0sqtwe52d36" path="res://Audio/SoundEffect/levelup.ogg" id="6_4hs6d"]
+[ext_resource type="AudioStream" uid="uid://dfxrvixvuqfwl" path="res://Audio/SoundEffect/Victory.wav" id="7_0u4jo"]
+[ext_resource type="AudioStream" uid="uid://cwxcc606m1vwx" path="res://Audio/SoundEffect/Lose.ogg" id="8_8icku"]
+[ext_resource type="PackedScene" uid="uid://bkwk2jray1c1c" path="res://Utility/basic_button.tscn" id="9_7caqn"]
+[ext_resource type="PackedScene" uid="uid://i0kgb3ij32q2" path="res://Player/GUI/ability_cooldown.tscn" id="10_5eowa"]
+[ext_resource type="Texture2D" uid="uid://diq7l5c8wcwk4" path="res://Textures/Swain/swain_ult_thumb.png" id="11_e127t"]
+[ext_resource type="Texture2D" uid="uid://bji8xised6074" path="res://Textures/Swain/swain_skill_thumb.png" id="12_7r86k"]
+
+[node name="GUILayer" type="CanvasLayer"]
+script = ExtResource("1_fdiq8")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="ExperienceBar" type="TextureProgressBar" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_over = ExtResource("1_56ilb")
+texture_progress = ExtResource("2_fdiq8")
+
+[node name="lbl_level" type="Label" parent="GUI/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 540.0
+offset_right = 640.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("3_utjed")
+theme_override_font_sizes/font_size = 16
+text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUI"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 200.0
+offset_right = 336.0
+offset_bottom = 208.0
+value = 1.0
+texture_over = ExtResource("4_pexlh")
+texture_progress = ExtResource("5_am70q")
+
+[node name="LevelUp" type="Panel" parent="GUI"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 0
+offset_left = 800.0
+offset_top = 50.0
+offset_right = 1000.0
+offset_bottom = 300.0
+
+[node name="lbl_LevelUp" type="Label" parent="GUI/LevelUp"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_utjed")
+text = "Level Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUI/LevelUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
+
+[node name="snd_levelup" type="AudioStreamPlayer" parent="GUI/LevelUp"]
+unique_name_in_owner = true
+stream = ExtResource("6_4hs6d")
+volume_db = -15.0
+
+[node name="DeathPanel" type="Panel" parent="GUI"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 0
+offset_left = 220.0
+offset_top = -297.0
+offset_right = 420.0
+offset_bottom = -47.0
+
+[node name="lbl_Result" type="Label" parent="GUI/DeathPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_utjed")
+text = "Result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="snd_victory" type="AudioStreamPlayer" parent="GUI/DeathPanel"]
+unique_name_in_owner = true
+stream = ExtResource("7_0u4jo")
+volume_db = -15.0
+
+[node name="snd_lose" type="AudioStreamPlayer" parent="GUI/DeathPanel"]
+unique_name_in_owner = true
+stream = ExtResource("8_8icku")
+volume_db = -15.0
+
+[node name="btn_menu" parent="GUI/DeathPanel" instance=ExtResource("9_7caqn")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 200.0
+offset_right = 140.0
+offset_bottom = 230.0
+text = "Menu"
+
+[node name="lblTimer" type="Label" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 280.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("3_utjed")
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollectedWeapons" type="GridContainer" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 40.0
+columns = 10
+
+[node name="CollectedUpgrades" type="GridContainer" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 56.0
+columns = 10
+
+[node name="Ult_cooldown" parent="GUI" instance=ExtResource("10_5eowa")]
+layout_mode = 1
+offset_left = 576.0
+offset_top = 295.0
+offset_right = 0.0
+offset_bottom = -1.0
+skill_image = ExtResource("11_e127t")
+
+[node name="Skill_cooldown" parent="GUI" instance=ExtResource("10_5eowa")]
+layout_mode = 1
+offset_left = 528.0
+offset_top = 311.0
+offset_right = -48.0
+offset_bottom = 15.0
+scale = Vector2(0.75, 0.75)
+skill_image = ExtResource("12_7r86k")
