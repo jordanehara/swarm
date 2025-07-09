@@ -3,14 +3,16 @@ extends Area2D
 var level = 1
 var hp = 1
 var speed = 300
-var damage = 2
+var damage = 7
 var HurtBoxType = 1 # HitOnce
 
 var angle = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var snd = $snd_auto
-@onready var collision = $CollisionPolygon2D
+@onready var collision = $CollisionShape2D
+
+signal remove_from_array(object)
 
 func _physics_process(delta: float) -> void:
 	position += angle * speed * delta

@@ -19,7 +19,6 @@ texture = ExtResource("1_0b73l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.25, -1.25)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_axflq")
 
 [node name="snd_auto" type="AudioStreamPlayer" parent="."]

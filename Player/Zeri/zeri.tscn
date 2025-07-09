@@ -59,12 +59,12 @@ one_shot = true
 
 [node name="AutoCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 0.75
+wait_time = 2.0
 autostart = true
 
 [node name="AutoAttackTimer" type="Timer" parent="Attack/AutoCooldownTimer"]
 unique_name_in_owner = true
-wait_time = 0.1
+wait_time = 0.05
 
 [node name="UltCooldownTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true

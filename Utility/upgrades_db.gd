@@ -17,7 +17,7 @@ const UPGRADES = {
 		"displayname": "Burst Fire",
 		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
 		"level": "Level: 2",
-		"prerequisite": ["zeri"],
+		"prerequisite": ["zeriauto1"],
 		"type": "weapon"
 	},
 	"zeriauto3": {
@@ -25,7 +25,7 @@ const UPGRADES = {
 		"displayname": "Burst Fire",
 		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
 		"level": "Level: 3",
-		"prerequisite": ["zeri"],
+		"prerequisite": ["zeriauto2"],
 		"type": "weapon"
 	},
 	"zeriauto4": {
@@ -33,7 +33,7 @@ const UPGRADES = {
 		"displayname": "Burst Fire",
 		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit",
 		"level": "Level: 4",
-		"prerequisite": ["zeri"],
+		"prerequisite": ["zeriauto3"],
 		"type": "weapon"
 	},
 	"zeriauto5": {
@@ -41,7 +41,7 @@ const UPGRADES = {
 		"displayname": "Burst Fire",
 		"details": "Fire a burst of 7 rounds that deal dmg to the first enemy hit. Deal static dmg every hit",
 		"level": "Level: Max",
-		"prerequisite": ["zeri"],
+		"prerequisite": ["zeriauto4"],
 		"type": "weapon"
 	},
 	"swainauto1": {

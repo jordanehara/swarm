@@ -13,13 +13,11 @@ var collected_experience = 0
 
 # Attacks
 var zeriAuto = preload("res://Player/Zeri/Attack/zeri_auto.tscn")
-var zeriAuto_abilityspeed = .75
+var zeriAuto_angle = Vector2.ZERO
 
 #var zeriSkill = preload("res://Player/Zeri/Attack/zeri_skill.tscn")
-var zeriSkill_abilityspeed = 20
 
 #var zeriUlt = preload("res://Player/Zeri/Attack/zeri_ult.tscn")
-var zeriUlt_abilityspeed = 60
 
 # Attack Nodes
 @onready var autoCooldownTimer = get_node("%AutoCooldownTimer")
@@ -98,9 +96,9 @@ func movement():
 	move_and_slide() # specific to 2d body. Automatically uses delta 
 
 func set_spell_speed():
-	autoCooldownTimer.wait_time = zeriAuto_abilityspeed * (1 - spell_cooldown)
-	skillCooldownTimer.wait_time = zeriSkill_abilityspeed * (1 - spell_cooldown)
-	ultCooldownTimer.wait_time = zeriUlt_abilityspeed * (1 - spell_cooldown)
+	autoCooldownTimer.wait_time *= (1 - spell_cooldown)
+	skillCooldownTimer.wait_time *= (1 - spell_cooldown)
+	ultCooldownTimer.wait_time *= (1 - spell_cooldown)
 
 func skill():
 	if skillCooldownTimer.is_stopped():
@@ -204,7 +202,8 @@ func upgrade_character(upgrade):
 
 func _on_auto_cooldown_timer_timeout() -> void:
 	auto_ammo = base_ammo
-
+	autoAttackTimer.start()
+	zeriAuto_angle = global_position.direction_to(get_global_mouse_position())
 
 func _on_health_regen_timer_timeout() -> void:
 	if hp < maxhp:
@@ -215,6 +214,9 @@ func _on_health_regen_timer_timeout() -> void:
 func _on_auto_attack_timer_timeout() -> void:
 	if auto_ammo > 0:
 		var auto_attack = zeriAuto.instantiate()
+		var randRotation = zeriAuto_angle.angle() + deg_to_rad(randi_range(-5, 5))
+		auto_attack.angle = (zeriAuto_angle + Vector2(cos(randRotation), sin(randRotation))).normalized()
+		auto_attack.rotation = auto_attack.angle.angle()
 		auto_attack.level = auto_level
 		add_child(auto_attack)
 		auto_ammo -= 1
