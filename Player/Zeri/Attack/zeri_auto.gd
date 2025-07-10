@@ -14,6 +14,20 @@ var angle = Vector2.ZERO
 
 signal remove_from_array(object)
 
+func _ready():
+	match level:
+		1:
+			damage = 7
+		2:
+			damage = 10
+		3:
+			damage = 13
+		4:
+			damage = 16
+		5:
+			damage = 25
+			hp = 9999
+
 func _physics_process(delta: float) -> void:
 	position += angle * speed * delta
 	if position.length() >= maxDistance:
