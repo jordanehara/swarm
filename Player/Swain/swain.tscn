@@ -29,6 +29,11 @@ texture = ExtResource("2_mm0hv")
 hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -600
+limit_top = -600
+limit_right = 600
+limit_bottom = 600
+editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1)

@@ -1,114 +1,19 @@
-[gd_scene load_steps=22 format=3 uid="uid://cakkryc7cmnd5"]
+[gd_scene load_steps=5 format=3 uid="uid://cakkryc7cmnd5"]
 
 [ext_resource type="PackedScene" uid="uid://dbdrijyxq8gnk" path="res://Utility/gui_layer.tscn" id="1_0wqet"]
-[ext_resource type="PackedScene" uid="uid://ck88yac1x0lvr" path="res://Utility/enemy_spawnner.tscn" id="3_j8job"]
-[ext_resource type="PackedScene" uid="uid://bxdc3wbjttkyu" path="res://Objects/experience_gem.tscn" id="4_3f78f"]
-[ext_resource type="Script" uid="uid://d31sqp43q7csk" path="res://Utility/spawn_info.gd" id="4_bkhv4"]
-[ext_resource type="PackedScene" uid="uid://dhsva8wysuv04" path="res://Enemy/enemy_kobold_weak.tscn" id="5_yf0ba"]
-[ext_resource type="PackedScene" uid="uid://bfcmt2xfsc0y1" path="res://Enemy/enemy_kobold_strong.tscn" id="6_w47uh"]
-[ext_resource type="PackedScene" uid="uid://582ly1044b2s" path="res://Enemy/enemy_cyclops.tscn" id="7_lo5ox"]
-[ext_resource type="PackedScene" uid="uid://bs0q0fumdsnuj" path="res://Enemy/enemy_juggernaut.tscn" id="8_h2aik"]
-[ext_resource type="PackedScene" uid="uid://c8wjmvddu83oe" path="res://Enemy/enemy_super.tscn" id="9_0wqet"]
 [ext_resource type="PackedScene" uid="uid://mweljxrw4s5w" path="res://Player/Swain/swain.tscn" id="10_0wqet"]
 [ext_resource type="PackedScene" uid="uid://dn0wuv63i6ebt" path="res://World/world_assets.tscn" id="11_h2aik"]
 [ext_resource type="AudioStream" uid="uid://bxdcr1slyjrch" path="res://Audio/Music/battleThemeA.mp3" id="11_lo5ox"]
-
-[sub_resource type="Resource" id="Resource_awrha"]
-script = ExtResource("4_bkhv4")
-time_start = 0
-time_end = 30
-enemy = ExtResource("5_yf0ba")
-enemy_num = 1
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_f23eu"]
-script = ExtResource("4_bkhv4")
-time_start = 30
-time_end = 210
-enemy = ExtResource("5_yf0ba")
-enemy_num = 2
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_oeat8"]
-script = ExtResource("4_bkhv4")
-time_start = 60
-time_end = 180
-enemy = ExtResource("6_w47uh")
-enemy_num = 1
-enemy_spawn_delay = 1
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_5xkvv"]
-script = ExtResource("4_bkhv4")
-time_start = 180
-time_end = 210
-enemy = ExtResource("7_lo5ox")
-enemy_num = 1
-enemy_spawn_delay = 2
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_kcyjf"]
-script = ExtResource("4_bkhv4")
-time_start = 210
-time_end = 240
-enemy = ExtResource("6_w47uh")
-enemy_num = 2
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_xw5lg"]
-script = ExtResource("4_bkhv4")
-time_start = 240
-time_end = 270
-enemy = ExtResource("7_lo5ox")
-enemy_num = 1
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_0lysu"]
-script = ExtResource("4_bkhv4")
-time_start = 240
-time_end = 240
-enemy = ExtResource("8_h2aik")
-enemy_num = 1
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_26uyv"]
-script = ExtResource("4_bkhv4")
-time_start = 270
-time_end = 300
-enemy = ExtResource("6_w47uh")
-enemy_num = 4
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
-
-[sub_resource type="Resource" id="Resource_dqu5g"]
-script = ExtResource("4_bkhv4")
-time_start = 300
-time_end = 300
-enemy = ExtResource("9_0wqet")
-enemy_num = 1
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://d31sqp43q7csk"
 
 [node name="World" type="Node2D" groups=["world"]]
 
 [node name="GUILayer" parent="." instance=ExtResource("1_0wqet")]
 
-[node name="EnemySpawnner" parent="." instance=ExtResource("3_j8job")]
-spawns = Array[ExtResource("4_bkhv4")]([SubResource("Resource_awrha"), SubResource("Resource_f23eu"), SubResource("Resource_oeat8"), SubResource("Resource_5xkvv"), SubResource("Resource_kcyjf"), SubResource("Resource_xw5lg"), SubResource("Resource_0lysu"), SubResource("Resource_26uyv"), SubResource("Resource_dqu5g")])
-
 [node name="Swain" parent="." instance=ExtResource("10_0wqet")]
+position = Vector2(-266, -79)
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(49, -7)
-
-[node name="ExperienceGem" parent="Loot" instance=ExtResource("4_3f78f")]
-position = Vector2(29, -21)
-experience = 100
 
 [node name="world_assets" parent="." instance=ExtResource("11_h2aik")]
 
