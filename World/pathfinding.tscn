@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bt0b8q63wgrlx"]
+
+[node name="pathfinding" type="Node2D" groups=["pathfinding"]]

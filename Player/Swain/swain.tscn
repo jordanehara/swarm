@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ckbfsn31reexu" path="res://Textures/Swain/swain_sprite.PNG" id="2_mm0hv"]
 [ext_resource type="PackedScene" uid="uid://deuow7u07d07s" path="res://Utility/hurt_box.tscn" id="3_fwwdq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
-radius = 5.54694
-height = 25.8553
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr08v"]
+size = Vector2(12.8465, 8.77766)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwnis"]
 size = Vector2(13, 20)
@@ -36,9 +35,9 @@ limit_bottom = 600
 editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 1)
+position = Vector2(2, 10)
 scale = Vector2(1.05394, 0.818103)
-shape = SubResource("CapsuleShape2D_4ntmi")
+shape = SubResource("RectangleShape2D_lr08v")
 
 [node name="walkTimer" type="Timer" parent="."]
 unique_name_in_owner = true

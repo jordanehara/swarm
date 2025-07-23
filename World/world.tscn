@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cakkryc7cmnd5"]
+[gd_scene load_steps=6 format=3 uid="uid://cakkryc7cmnd5"]
 
 [ext_resource type="PackedScene" uid="uid://dbdrijyxq8gnk" path="res://Utility/gui_layer.tscn" id="1_0wqet"]
+[ext_resource type="PackedScene" uid="uid://dhsva8wysuv04" path="res://Enemy/enemy_kobold_weak.tscn" id="2_k8do8"]
 [ext_resource type="PackedScene" uid="uid://mweljxrw4s5w" path="res://Player/Swain/swain.tscn" id="10_0wqet"]
 [ext_resource type="PackedScene" uid="uid://dn0wuv63i6ebt" path="res://World/world_assets.tscn" id="11_h2aik"]
 [ext_resource type="AudioStream" uid="uid://bxdcr1slyjrch" path="res://Audio/Music/battleThemeA.mp3" id="11_lo5ox"]
@@ -8,9 +9,13 @@
 [node name="World" type="Node2D" groups=["world"]]
 
 [node name="GUILayer" parent="." instance=ExtResource("1_0wqet")]
+visible = false
+
+[node name="enemy_kobold_weak" parent="." instance=ExtResource("2_k8do8")]
+position = Vector2(39, -255)
 
 [node name="Swain" parent="." instance=ExtResource("10_0wqet")]
-position = Vector2(-266, -79)
+position = Vector2(83, -129)
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(49, -7)
