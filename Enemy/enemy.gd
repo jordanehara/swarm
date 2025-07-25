@@ -32,7 +32,6 @@ func _physics_process(delta: float) -> void:
 		return
 	var next_path_position = navAgent.get_next_path_position()
 	var direction = global_position.direction_to(next_path_position)
-	velocity = global_position.direction_to(next_path_position) * movement_speed
 	velocity = direction * movement_speed * slow_percentage
 	velocity += knockback
 	position += velocity * delta
