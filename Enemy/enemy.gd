@@ -23,6 +23,13 @@ func _ready():
 	anim.play("walk")
 	z_index = 1
 	hitBox.damage = enemy_damage
+	
+	# Set the initial position of the enemy
+	navAgent.target_position = player.global_position
+	if navAgent.is_navigation_finished():
+		return
+	var initial_path = navAgent.get_current_navigation_path()
+	global_position = initial_path[0]
 
 func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recovery)

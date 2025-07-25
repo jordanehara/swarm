@@ -11,9 +11,9 @@
 [sub_resource type="Resource" id="Resource_oe8m4"]
 script = ExtResource("4_yf0ba")
 time_start = 0
-time_end = 1
+time_end = 5
 enemy = ExtResource("5_eidgh")
-enemy_num = 10
+enemy_num = 1
 enemy_spawn_delay = 0
 metadata/_custom_type_script = "uid://d31sqp43q7csk"
 
@@ -24,7 +24,7 @@ visible = false
 
 [node name="Swain" parent="." instance=ExtResource("10_0wqet")]
 z_index = 1
-position = Vector2(-320, 81)
+position = Vector2(-319, 79)
 
 [node name="EnemySpawnner" parent="." instance=ExtResource("3_k8do8")]
 spawns = Array[ExtResource("4_yf0ba")]([SubResource("Resource_oe8m4")])

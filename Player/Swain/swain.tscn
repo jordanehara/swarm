@@ -35,6 +35,7 @@ limit_bottom = 600
 editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, 10)
 scale = Vector2(1.05394, 0.818103)
 shape = SubResource("RectangleShape2D_lr08v")
@@ -48,6 +49,7 @@ one_shot = true
 autostart = true
 
 [node name="HurtBox" parent="." instance=ExtResource("3_fwwdq")]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
