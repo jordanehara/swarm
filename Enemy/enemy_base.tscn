@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfoqgxswqmc5e"]
+[gd_scene load_steps=5 format=3 uid="uid://dfoqgxswqmc5e"]
 
 [ext_resource type="PackedScene" uid="uid://deuow7u07d07s" path="res://Utility/hurt_box.tscn" id="1_0kxy1"]
 [ext_resource type="Script" uid="uid://do7pi017hldog" path="res://Enemy/enemy.gd" id="1_w4axe"]
 [ext_resource type="PackedScene" uid="uid://bdd1ektux06lc" path="res://Utility/hit_box.tscn" id="2_w4axe"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4axe"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_w4axe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_w4axe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

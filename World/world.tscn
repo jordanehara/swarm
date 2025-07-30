@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbdrijyxq8gnk" path="res://Utility/gui_layer.tscn" id="1_0wqet"]
 [ext_resource type="PackedScene" uid="uid://ck88yac1x0lvr" path="res://Utility/enemy_spawnner.tscn" id="3_k8do8"]
 [ext_resource type="Script" uid="uid://d31sqp43q7csk" path="res://Utility/spawn_info.gd" id="4_yf0ba"]
-[ext_resource type="PackedScene" uid="uid://cupx7ird2e6b4" path="res://Enemy/enemy_level_4.tscn" id="5_yf0ba"]
+[ext_resource type="PackedScene" uid="uid://bhb5acf4yigoq" path="res://Enemy/enemy_level_1.tscn" id="5_yf0ba"]
 [ext_resource type="PackedScene" uid="uid://mweljxrw4s5w" path="res://Player/Swain/swain.tscn" id="10_0wqet"]
 [ext_resource type="PackedScene" uid="uid://dn0wuv63i6ebt" path="res://World/world_assets.tscn" id="11_h2aik"]
 [ext_resource type="AudioStream" uid="uid://bxdcr1slyjrch" path="res://Audio/Music/battleThemeA.mp3" id="11_lo5ox"]
@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://d31sqp43q7csk"
 
 [node name="Swain" parent="." instance=ExtResource("10_0wqet")]
 z_index = 1
-position = Vector2(-320, 81)
+position = Vector2(-275, -26)
 
 [node name="EnemySpawnner" parent="." instance=ExtResource("3_k8do8")]
 spawns = Array[ExtResource("4_yf0ba")]([SubResource("Resource_oe8m4")])
