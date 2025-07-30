@@ -33,6 +33,7 @@ script = SubResource("GDScript_bfneg")
 
 [node name="MapNavArea" type="NavigationRegion2D" parent="pathfinding"]
 unique_name_in_owner = true
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_5x6nf")
 
 [node name="GrassNavObstacle" type="NavigationObstacle2D" parent="pathfinding/MapNavArea"]

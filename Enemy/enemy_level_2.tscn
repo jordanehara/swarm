@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://bonhawhqept6u"]
+
+[ext_resource type="PackedScene" uid="uid://dfoqgxswqmc5e" path="res://Enemy/enemy_base.tscn" id="1_8ia0u"]
+[ext_resource type="Texture2D" uid="uid://mkjhmqd3hjef" path="res://Textures/Enemy/kolbold_strong.png" id="2_ve7nh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve7nh"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_ve7nh"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_72f6p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_naykl"]
+_data = {
+&"RESET": SubResource("Animation_72f6p"),
+&"walk": SubResource("Animation_ve7nh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve7nh"]
+size = Vector2(24, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72f6p"]
+size = Vector2(24, 28)
+
+[node name="Enemy" instance=ExtResource("1_8ia0u")]
+movement_speed = 28.0
+hp = 200
+experience = 2
+enemy_damage = 20
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ve7nh")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_ve7nh")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_naykl")
+}
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_ve7nh")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_72f6p")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
